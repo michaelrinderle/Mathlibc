@@ -1,6 +1,8 @@
 #pragma once
 #include <datatypes/data/vec.h>
 
+// public vec functions
+
 void*
 vec_init(vec_type vec_type)
 {
