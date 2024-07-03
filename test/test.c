@@ -1,4 +1,5 @@
 #include <unity.h>
+#include "tests/datatypes/data/hash_test.h"
 #include "tests/datatypes/data/list_test.h"
 #include "tests/datatypes/data/str_test.h"
 #include "tests/datatypes/data/vec_test.h"
@@ -14,15 +15,16 @@ main(void)
 	UNITY_BEGIN();
 
 	// datatypes/data
+	hash_tests();
 	list_tests();
-	// str_tests();
+	str_tests();
 	vec_tests();
 
 	// datatypes
 	fraction_tests();
 
 	// fields
-	// number_theory_tests();
+	number_theory_tests();
 
 	return UNITY_END();
 }

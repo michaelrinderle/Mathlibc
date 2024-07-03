@@ -8,7 +8,8 @@ vec_init(vec_type vec_type)
 {
 	switch (vec_type)
 	{
-		case VEC_I32_T: {
+		case VEC_I32_T:
+		{
 			vec_i32_t* vec = (vec_i32_t*)malloc(sizeof(vec_i32_t));
 			vec->data = malloc(sizeof(i32) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -16,7 +17,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_I32_T;
 			return vec;
 		}
-		case VEC_I64_T: {
+		case VEC_I64_T:
+		{
 			vec_i64_t* vec = (vec_i64_t*)malloc(sizeof(vec_i64_t));
 			vec->data = malloc(sizeof(i64) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -24,7 +26,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_I64_T;
 			return vec;
 		}
-		case VEC_U32_T: {
+		case VEC_U32_T:
+		{
 			vec_u32_t* vec = (vec_u32_t*)malloc(sizeof(vec_u32_t));
 			vec->data = malloc(sizeof(u32) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -32,7 +35,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_U32_T;
 			return vec;
 		}
-		case VEC_U64_T: {
+		case VEC_U64_T:
+		{
 			vec_u64_t* vec = (vec_u64_t*)malloc(sizeof(vec_u64_t));
 			vec->data = malloc(sizeof(u64) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -40,7 +44,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_U64_T;
 			return vec;
 		}
-		case VEC_F32_T: {
+		case VEC_F32_T:
+		{
 			vec_f32_t* vec = (vec_f32_t*)malloc(sizeof(vec_f32_t));
 			vec->data = malloc(sizeof(f32) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -48,7 +53,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_F32_T;
 			return vec;
 		}
-		case VEC_F64_T: {
+		case VEC_F64_T:
+		{
 			vec_f64_t* vec = (vec_f64_t*)malloc(sizeof(vec_f64_t));
 			vec->data = malloc(sizeof(f64) * VEC_INITIAL_CAPACITY);
 			vec->vec_info.size = 0;
@@ -56,7 +62,8 @@ vec_init(vec_type vec_type)
 			vec->vec_info.type = VEC_F64_T;
 			return vec;
 		}
-		default: {
+		default:
+		{
 			fprintf(stderr, "[*] vec_init: unsupported vector type\n");
 			return NULL;
 		}
@@ -72,31 +79,38 @@ vec_free(void* self)
 
 	switch (vec_info->type)
 	{
-		case VEC_I32_T: {
+		case VEC_I32_T:
+		{
 			free(((vec_i32_t*)self)->data);
 			break;
 		}
-		case VEC_I64_T: {
+		case VEC_I64_T:
+		{
 			free(((vec_i64_t*)self)->data);
 			break;
 		}
-		case VEC_U32_T: {
+		case VEC_U32_T:
+		{
 			free(((vec_u32_t*)self)->data);
 			break;
 		}
-		case VEC_U64_T: {
+		case VEC_U64_T:
+		{
 			free(((vec_u64_t*)self)->data);
 			break;
 		}
-		case VEC_F32_T: {
+		case VEC_F32_T:
+		{
 			free(((vec_f32_t*)self)->data);
 			break;
 		}
-		case VEC_F64_T: {
+		case VEC_F64_T:
+		{
 			free(((vec_f64_t*)self)->data);
 			break;
 		}
-		default: {
+		default:
+		{
 			fprintf(stderr, "[*] vec_init: unsupported vector type\n");
 			return NULL;
 		}
@@ -295,7 +309,8 @@ vec_index_of(void* self, const void* element)
 	// loop through each element & compare
 	for (int i = 0; i < vec_info->size; ++i)
 	{
-		if (memcmp(data_ptr + i * element_size, element, element_size) == 0) {
+		if (memcmp(data_ptr + i * element_size, element, element_size) == 0)
+		{
 			vec_push_back(vec, &i); // element found
 		}
 	}
@@ -421,7 +436,8 @@ vec_insert(void* self, u32 index, const void* element)
 	}
 
 	// shift elements to the right to make space for the new element
-	if (index < vec_info->size) {
+	if (index < vec_info->size)
+	{
 		memmove(data_ptr + (index + 1) * element_size, data_ptr + index * element_size, (vec_info->size - index) * element_size);
 	}
 
@@ -583,7 +599,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_i32_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_i32_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_i32_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_i32_t*)self)->data[i] = ((vec_i32_t*)self)->data[i + 1];
 				}
@@ -595,7 +611,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_i64_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_i64_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_i64_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_i64_t*)self)->data[i] = ((vec_i64_t*)self)->data[i + 1];
 				}
@@ -607,7 +623,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_u32_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_u32_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_u32_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_u32_t*)self)->data[i] = ((vec_u32_t*)self)->data[i + 1];
 				}
@@ -619,7 +635,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_u64_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_u64_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_u64_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_u64_t*)self)->data[i] = ((vec_u64_t*)self)->data[i + 1];
 				}
@@ -631,7 +647,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_f32_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_f32_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_f32_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_f32_t*)self)->data[i] = ((vec_f32_t*)self)->data[i + 1];
 				}
@@ -643,7 +659,7 @@ vec_remove(void* self, u32 index)
 		{
 			if (index < ((vec_f64_t*)self)->vec_info.size)
 			{
-				for (u32 i = index; i < ((vec_f64_t*)self)->vec_info.size - 1; ++i)
+				for (uint i = index; i < ((vec_f64_t*)self)->vec_info.size - 1; ++i)
 				{
 					((vec_f64_t*)self)->data[i] = ((vec_f64_t*)self)->data[i + 1];
 				}
@@ -651,7 +667,8 @@ vec_remove(void* self, u32 index)
 			}
 			break;
 		}
-		default: {
+		default:
+		{
 			fprintf(stderr, "[*] vec_init: unsupported vector type\n");
 			return false;
 		}
@@ -749,7 +766,7 @@ vec_set(void* self, u32 index, const void* element)
 		}
 		default:
 		{
-				return false;
+			return false;
 		}
 	}
 
@@ -773,7 +790,8 @@ vec_shrink(void* self)
 		{
 			vec_i32_t* vec = (vec_i32_t*)self;
 			i32* new_data = (i32*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -784,7 +802,8 @@ vec_shrink(void* self)
 		{
 			vec_i64_t* vec = (vec_i64_t*)self;
 			i64* new_data = (i64*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -795,7 +814,8 @@ vec_shrink(void* self)
 		{
 			vec_u32_t* vec = (vec_u32_t*)self;
 			u32* new_data = (u32*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -806,7 +826,8 @@ vec_shrink(void* self)
 		{
 			vec_u64_t* vec = (vec_u64_t*)self;
 			u64* new_data = (u64*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -817,7 +838,8 @@ vec_shrink(void* self)
 		{
 			vec_f32_t* vec = (vec_f32_t*)self;
 			f32* new_data = (f32*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -828,7 +850,8 @@ vec_shrink(void* self)
 		{
 			vec_f64_t* vec = (vec_f64_t*)self;
 			f64* new_data = (f64*)realloc(vec->data, capacity * element_size);
-			if (!new_data) {
+			if (!new_data)
+			{
 				fprintf(stderr, "[*] vec_shrink: Memory allocation failed\n");
 				return false;
 			}
@@ -1003,35 +1026,35 @@ _vec_get_element_size(void* self)
 {
 	switch (((vec_info_t*)self)->type)
 	{
-	case VEC_I32_T:
-	{
-		return sizeof(i32);
-	}
-	case VEC_I64_T:
-	{
-		return sizeof(i64);
-	}
-	case VEC_U32_T:
-	{
-		return sizeof(u32);
-	}
-	case VEC_U64_T:
-	{
-		return sizeof(u64);
-	}
-	case VEC_F32_T:
-	{
-		return sizeof(f32);
-	}
-	case VEC_F64_T:
-	{
-		return sizeof(f64);
-	}
-	default:
-	{
-		fprintf(stderr, "[*] vec_init: unsupported vector type\n");
-		return 0;
-	}
+		case VEC_I32_T:
+		{
+			return sizeof(i32);
+		}
+		case VEC_I64_T:
+		{
+			return sizeof(i64);
+		}
+		case VEC_U32_T:
+		{
+			return sizeof(u32);
+		}
+		case VEC_U64_T:
+		{
+			return sizeof(u64);
+		}
+		case VEC_F32_T:
+		{
+			return sizeof(f32);
+		}
+		case VEC_F64_T:
+		{
+			return sizeof(f64);
+		}
+		default:
+		{
+			fprintf(stderr, "[*] vec_init: unsupported vector type\n");
+			return NULL_VAL;
+		}
 	}
 }
 

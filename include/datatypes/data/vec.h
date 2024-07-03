@@ -25,33 +25,33 @@ typedef struct vec_info_t {
 } vec_info_t, vec_info;
 
 typedef struct vec_i32_t {
-	vec_info vec_info;
+	vec_info_t vec_info;
 	i32* data;
 } vec_i32_t, vec_i32;
 
 typedef struct vec_i64_t {
-	vec_info vec_info;
+	vec_info_t vec_info;
 	i64* data;
 } vec_i64_t, vec_i64;
 
 typedef struct vec_u32_t {
-	vec_info vec_info;
+	vec_info_t vec_info;
 	u32* data;
 } vec_u32_t, vec_u32;
 
 typedef struct vec_u64_t {
-	vec_info vec_info;
+	vec_info_t vec_info;
 	u64* data;
 } vec_u64_t, vec_u64;
 
 typedef struct vec_f32_t {
-	vec_info vec_info;
+	vec_info_t vec_info;
 	f32* data;
 } vec_f32_t, vec_f32;
 
 typedef struct vec_f64_t {
+	vec_info_t vec_info;
 	f64* data;
-	vec_info vec_info;
 } vec_f64_t, vec_f64;
 
 // public vec functions

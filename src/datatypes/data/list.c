@@ -10,49 +10,56 @@ list_init(list_type list_type)
 
 	switch (list_type)
 	{
-		case LIST_I32_T: {
+		case LIST_I32_T:
+		{
 			list_i32_t* list = (list_i32_t*)malloc(sizeof(list_i32_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			list_i64_t* list = (list_i64_t*)malloc(sizeof(list_i64_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			list_u32_t* list = (list_u32_t*)malloc(sizeof(list_u32_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			list_u64_t* list = (list_u64_t*)malloc(sizeof(list_u64_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			list_f32_t* list = (list_f32_t*)malloc(sizeof(list_f32_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			list_f64_t* list = (list_f64_t*)malloc(sizeof(list_f64_t));
 			list->list_info = list_info;
 			list->first = NULL;
 			list->last = NULL;
 			return list;
 		}
-		default: {
+		default:
+		{
 			fprintf(stderr, "[*] list_init: unsupported vector type\n");
 			return NULL;
 		}
@@ -71,7 +78,8 @@ list_free(void* self)
 		{
 			list_i32_t* list = (list_i32_t*)self;
 			list_i32_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_i32_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -83,7 +91,8 @@ list_free(void* self)
 		{
 			list_i64_t* list = (list_i64_t*)self;
 			list_i64_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_i64_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -95,7 +104,8 @@ list_free(void* self)
 		{
 			list_u32_t* list = (list_u32_t*)self;
 			list_u32_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_u32_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -107,7 +117,8 @@ list_free(void* self)
 		{
 			list_u64_t* list = (list_u64_t*)self;
 			list_u64_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_u64_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -119,7 +130,8 @@ list_free(void* self)
 		{
 			list_f32_t* list = (list_f32_t*)self;
 			list_f32_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_f32_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -131,7 +143,8 @@ list_free(void* self)
 		{
 			list_f64_t* list = (list_f64_t*)self;
 			list_f64_node_t* current = list->first;
-			while (current) {
+			while (current)
+			{
 				list_f64_node_t* next = current->next;
 				free(current);
 				current = next;
@@ -155,72 +168,90 @@ list_contains(void* self, const void* element)
 	}
 
 	switch (((list_info_t*)self)->type) {
-		case LIST_I32_T: {
+		case LIST_I32_T:
+		{
 			i32 search_element = *((i32*)element);
 			list_i32_t* list = (list_i32_t*)self;
 			list_i32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
 			}
 			return false;
 		}
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			i64 search_element = *((i64*)element);
 			list_i64_t* list = (list_i64_t*)self;
 			list_i64_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
 			}
 			return false;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			u32 search_element = *((u32*)element);
 			list_u32_t* list = (list_u32_t*)self;
 			list_u32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
 			}
 			return false;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			u64 search_element = *((u64*)element);
 			list_u64_t* list = (list_u64_t*)self;
 			list_u64_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
 			}
 			return false;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			f32 search_element = *((f32*)element);
 			list_f32_t* list = (list_f32_t*)self;
 			list_f32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
 			}
 			return false;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			f64 search_element = *((f64*)element);
 			list_f64_t* list = (list_f64_t*)self;
 			list_f64_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					return true;
 				}
 				current = current->next;
@@ -228,8 +259,10 @@ list_contains(void* self, const void* element)
 			return false;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_contains: Unknown list type\n");
 			return false;
+		}
 	}
 }
 
@@ -341,7 +374,8 @@ list_clear(void* self)
 }
 
 u32
-list_find_all(void* self, const void* element) {
+list_find_all(void* self, const void* element)
+{
 	if (self == NULL || element == NULL)
 	{
 		fprintf(stderr, "[*] list_find_all: Invalid list or element\n");
@@ -350,73 +384,91 @@ list_find_all(void* self, const void* element) {
 
 	u32 count = 0;
 
-	switch (((list_info_t*)self)->type) {
-		case LIST_I32_T: {
+	switch (((list_info_t*)self)->type)
+	{
+		case LIST_I32_T:
+		{
 			i32 search_element = *((i32*)element);
 			list_i32_t* list = (list_i32_t*)self;
 			list_i32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
 			}
 			return count;
 		}
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			i64 search_element = *((i64*)element);
 			list_i64_t* list = (list_i64_t*)self;
 			list_i64_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
 			}
 			return count;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			u32 search_element = *((u32*)element);
 			list_u32_t* list = (list_u32_t*)self;
 			list_u32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
 			}
 			return count;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			u64 search_element = *((u64*)element);
 			list_u64_t* list = (list_u64_t*)self;
 			list_u64_node_t* current = list->first;
 			while (current != NULL) {
-				if (current->data == search_element) {
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
 			}
 			return count;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			f32 search_element = *((f32*)element);
 			list_f32_t* list = (list_f32_t*)self;
 			list_f32_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
 			}
 			return count;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			f64 search_element = *((f64*)element);
 			list_f64_t* list = (list_f64_t*)self;
 			list_f64_node_t* current = list->first;
-			while (current != NULL) {
-				if (current->data == search_element) {
+			while (current != NULL)
+			{
+				if (current->data == search_element)
+				{
 					count++;
 				}
 				current = current->next;
@@ -424,8 +476,10 @@ list_find_all(void* self, const void* element) {
 			return count;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_find_all: Unknown list type\n");
 			return 0;
+		}
 	}
 }
 
@@ -437,8 +491,10 @@ list_insert(void* self, u32 index, const void* element)
 		return false;
 	}
 
-	switch (((list_info_t*)self)->type) {
-		case LIST_I32_T: {
+	switch (((list_info_t*)self)->type)
+	{
+		case LIST_I32_T:
+		{
 			list_i32_t* list = (list_i32_t*)self;
 			if (index > list->list_info.size)
 			{
@@ -459,11 +515,13 @@ list_insert(void* self, u32 index, const void* element)
 			{
 				new_node->prev = NULL;
 				new_node->next = list->first;
-				if (list->first != NULL) {
+				if (list->first != NULL)
+				{
 					list->first->prev = new_node;
 				}
 				list->first = new_node;
-				if (list->last == NULL) {
+				if (list->last == NULL)
+				{
 					list->last = new_node;
 				}
 			}
@@ -489,7 +547,8 @@ list_insert(void* self, u32 index, const void* element)
 			list->list_info.size++;
 			return true;
 		}
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			list_i64_t* list = (list_i64_t*)self;
 			if (index > list->list_info.size)
 			{
@@ -509,11 +568,13 @@ list_insert(void* self, u32 index, const void* element)
 			{
 				new_node->prev = NULL;
 				new_node->next = list->first;
-				if (list->first != NULL) {
+				if (list->first != NULL)
+				{
 					list->first->prev = new_node;
 				}
 				list->first = new_node;
-				if (list->last == NULL) {
+				if (list->last == NULL)
+				{
 					list->last = new_node;
 				}
 			}
@@ -539,7 +600,8 @@ list_insert(void* self, u32 index, const void* element)
 			list->list_info.size++;
 			return true;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			list_u32_t* list = (list_u32_t*)self;
 			if (index > list->list_info.size)
 			{
@@ -559,11 +621,13 @@ list_insert(void* self, u32 index, const void* element)
 			{
 				new_node->prev = NULL;
 				new_node->next = list->first;
-				if (list->first != NULL) {
+				if (list->first != NULL)
+				{
 					list->first->prev = new_node;
 				}
 				list->first = new_node;
-				if (list->last == NULL) {
+				if (list->last == NULL)
+				{
 					list->last = new_node;
 				}
 			}
@@ -589,9 +653,11 @@ list_insert(void* self, u32 index, const void* element)
 			list->list_info.size++;
 			return true;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			list_u64_t* list = (list_u64_t*)self;
-			if (index > list->list_info.size) {
+			if (index > list->list_info.size)
+			{
 				fprintf(stderr, "[*] list_insert: Index out of bounds\n");
 				return false;
 			}
@@ -608,18 +674,21 @@ list_insert(void* self, u32 index, const void* element)
 			{
 				new_node->prev = NULL;
 				new_node->next = list->first;
-				if (list->first != NULL) {
+				if (list->first != NULL)
+				{
 					list->first->prev = new_node;
 				}
 				list->first = new_node;
-				if (list->last == NULL) {
+				if (list->last == NULL)
+				{
 					list->last = new_node;
 				}
 			}
 			else
 			{
 				list_u64_node_t* current = list->first;
-				for (u32 i = 0; i < index - 1; ++i) {
+				for (u32 i = 0; i < index - 1; ++i)
+				{
 					current = current->next;
 				}
 				new_node->next = current->next;
@@ -638,7 +707,8 @@ list_insert(void* self, u32 index, const void* element)
 			list->list_info.size++;
 			return true;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			list_f32_t* list = (list_f32_t*)self;
 			if (index > list->list_info.size)
 			{
@@ -669,7 +739,8 @@ list_insert(void* self, u32 index, const void* element)
 			else
 			{
 				list_f32_node_t* current = list->first;
-				for (u32 i = 0; i < index - 1; ++i) {
+				for (u32 i = 0; i < index - 1; ++i)
+				{
 					current = current->next;
 				}
 				new_node->next = current->next;
@@ -688,15 +759,18 @@ list_insert(void* self, u32 index, const void* element)
 			list->list_info.size++;
 			return true;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			list_f64_t* list = (list_f64_t*)self;
-			if (index > list->list_info.size) {
+			if (index > list->list_info.size)
+			{
 				fprintf(stderr, "[*] list_insert: Index out of bounds\n");
 				return false;
 			}
 
 			list_f64_node_t* new_node = (list_f64_node_t*)malloc(sizeof(list_f64_node_t));
-			if (new_node == NULL) {
+			if (new_node == NULL)
+			{
 				fprintf(stderr, "[*] list_insert: Memory allocation failed\n");
 				return false;
 			}
@@ -707,11 +781,13 @@ list_insert(void* self, u32 index, const void* element)
 			{
 				new_node->prev = NULL;
 				new_node->next = list->first;
-				if (list->first != NULL) {
+				if (list->first != NULL)
+				{
 					list->first->prev = new_node;
 				}
 				list->first = new_node;
-				if (list->last == NULL) {
+				if (list->last == NULL)
+				{
 					list->last = new_node;
 				}
 			}
@@ -738,8 +814,10 @@ list_insert(void* self, u32 index, const void* element)
 			return true;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_insert: Unsupported list type\n");
 			return false;
+		}
 	}
 }
 
@@ -794,7 +872,8 @@ list_is_equal(void* self, void* list)
 			}
 			return true;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			list_u32_t* list1 = (list_u32_t*)self;
 			list_u32_t* list2 = (list_u32_t*)list;
 			list_u32_node_t* node1 = list1->first;
@@ -807,7 +886,8 @@ list_is_equal(void* self, void* list)
 			}
 			return true;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			list_u64_t* list1 = (list_u64_t*)self;
 			list_u64_t* list2 = (list_u64_t*)list;
 			list_u64_node_t* node1 = list1->first;
@@ -820,7 +900,8 @@ list_is_equal(void* self, void* list)
 			}
 			return true;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			list_f32_t* list1 = (list_f32_t*)self;
 			list_f32_t* list2 = (list_f32_t*)list;
 			list_f32_node_t* node1 = list1->first;
@@ -833,7 +914,8 @@ list_is_equal(void* self, void* list)
 			}
 			return true;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			list_f64_t* list1 = (list_f64_t*)self;
 			list_f64_t* list2 = (list_f64_t*)list;
 			list_f64_node_t* node1 = list1->first;
@@ -847,8 +929,10 @@ list_is_equal(void* self, void* list)
 			return true;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_is_equal: Unknown list type\n");
 			return false;
+		}
 	}
 }
 
@@ -861,8 +945,10 @@ list_remove(void* self, u32 index)
 
 	if (index < 0 || (u32)index >= list_info->size)  return false; // Index out of bounds
 
-	switch (list_info->type) {
-		case LIST_I32_T: {
+	switch (list_info->type)
+	{
+		case LIST_I32_T:
+		{
 			list_i32_t* list = (list_i32_t*)self;
 			list_i32_node_t* current = list->first;
 			for (i32 i = 0; i < index; ++i) { current = current->next; }
@@ -877,7 +963,8 @@ list_remove(void* self, u32 index)
 			free(current);
 			break;
 		}
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			list_i64_t* list = (list_i64_t*)self;
 			list_i64_node_t* current = list->first;
 			for (i64 i = 0; i < index; ++i) { current = current->next; }
@@ -892,7 +979,8 @@ list_remove(void* self, u32 index)
 			free(current);
 			break;
 		}
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			list_u32_t* list = (list_u32_t*)self;
 			list_u32_node_t* current = list->first;
 			for (u32 i = 0; i < index; ++i) { current = current->next; }
@@ -907,7 +995,8 @@ list_remove(void* self, u32 index)
 			free(current);
 			break;
 		}
-		case LIST_U64_T: {
+		case LIST_U64_T:
+		{
 			list_u64_t* list = (list_u64_t*)self;
 			list_u64_node_t* current = list->first;
 			for (u64 i = 0; i < index; ++i) { current = current->next; }
@@ -922,7 +1011,8 @@ list_remove(void* self, u32 index)
 			free(current);
 			break;
 		}
-		case LIST_F32_T: {
+		case LIST_F32_T:
+		{
 			list_f32_t* list = (list_f32_t*)self;
 			list_f32_node_t* current = list->first;
 			for (f32 i = 0; i < index; ++i) { current = current->next; }
@@ -937,7 +1027,8 @@ list_remove(void* self, u32 index)
 			free(current);
 			break;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			list_f32_t* list = (list_f32_t*)self;
 			list_f32_node_t* current = list->first;
 			for (f32 i = 0; i < index; ++i) { current = current->next; }
@@ -953,8 +1044,10 @@ list_remove(void* self, u32 index)
 			break;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_remove: unsupported list type\n");
 			return false;
+		}
 	}
 
 	list_info->size--;
@@ -987,7 +1080,8 @@ list_reverse(void* self)
 				current->next = temp;
 				current = current->prev;
 			}
-			if (temp != NULL) {
+			if (temp != NULL)
+			{
 				list->first = temp->prev;
 			}
 			return true;
@@ -1064,7 +1158,8 @@ list_reverse(void* self)
 			}
 			return true;
 		}
-		case LIST_F64_T: {
+		case LIST_F64_T:
+		{
 			list_f64_t* list = (list_f64_t*)self;
 			list_f64_node_t* current = list->first;
 			list_f64_node_t* temp = NULL;
@@ -1082,8 +1177,10 @@ list_reverse(void* self)
 			return true;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_reverse: Unknown list type\n");
 			return false;
+		}
 	}
 }
 
@@ -1173,8 +1270,10 @@ list_set(void* self, u32 index, const void* element)
 			return true;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_set: Unknown list type\n");
 			return false;
+		}
 	}
 }
 
@@ -1229,7 +1328,8 @@ list_sort(void* self)
 			return true;
 		}
 
-		case LIST_I64_T: {
+		case LIST_I64_T:
+		{
 			list_i64_t* list = (list_i64_t*)self;
 			if (list->first == NULL || list->last == NULL) return false;
 
@@ -1259,7 +1359,8 @@ list_sort(void* self)
 			return true;
 		}
 
-		case LIST_U32_T: {
+		case LIST_U32_T:
+		{
 			list_u32_t* list = (list_u32_t*)self;
 			if (list->first == NULL || list->last == NULL) return false;
 
@@ -1288,7 +1389,6 @@ list_sort(void* self)
 
 			return true;
 		}
-
 		case LIST_U64_T:
 		{
 			list_u64_t* list = (list_u64_t*)self;
@@ -1350,7 +1450,6 @@ list_sort(void* self)
 
 			return true;
 		}
-
 		case LIST_F64_T:
 		{
 			list_f64_t* list = (list_f64_t*)self;
@@ -1382,8 +1481,10 @@ list_sort(void* self)
 			return true;
 		}
 		default:
+		{
 			fprintf(stderr, "[*] list_sort: unknown list type\n");
 			return false;
+		}
 	}
 }
 
@@ -1401,12 +1502,14 @@ _list_append_i32(list_i32_t* self, i32 element) {
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-	if (self->last == NULL) {
+	if (self->last == NULL)
+	{
 		// The list is empty, set first and last to the new node
 		self->first = new_node;
 		self->last = new_node;
 	}
-	else {
+	else
+{
 		// Append the new node to the end of the list
 		new_node->prev = self->last;
 		self->last->next = new_node;
@@ -1420,7 +1523,8 @@ _list_append_i32(list_i32_t* self, i32 element) {
 }
 
 list_i64_node_t*
-_list_append_i64(list_i64_t* self, i64 element) {
+_list_append_i64(list_i64_t* self, i64 element)
+{
 	if (self == NULL) return NULL;
 
 	list_i64_node_t* new_node = (list_i64_node_t*)malloc(sizeof(list_i64_node_t));
@@ -1430,11 +1534,13 @@ _list_append_i64(list_i64_t* self, i64 element) {
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-	if (self->last == NULL) {
+	if (self->last == NULL)
+	{
 		self->first = new_node;
 		self->last = new_node;
 	}
-	else {
+	else
+{
 		new_node->prev = self->last;
 		self->last->next = new_node;
 		self->last = new_node;
@@ -1446,7 +1552,8 @@ _list_append_i64(list_i64_t* self, i64 element) {
 }
 
 list_u32_node_t*
-_list_append_u32(list_u32_t* self, u32 element) {
+_list_append_u32(list_u32_t* self, u32 element)
+{
 	if (self == NULL) return NULL;
 
 	list_u32_node_t* new_node = (list_u32_node_t*)malloc(sizeof(list_u32_node_t));
@@ -1476,7 +1583,8 @@ _list_append_u32(list_u32_t* self, u32 element) {
 }
 
 list_u64_node_t*
-_list_append_u64(list_u64_t* self, u64 element) {
+_list_append_u64(list_u64_t* self, u64 element)
+{
 	if (self == NULL) return NULL;
 
 	list_u64_node_t* new_node = (list_u64_node_t*)malloc(sizeof(list_u64_node_t));
@@ -1504,7 +1612,8 @@ _list_append_u64(list_u64_t* self, u64 element) {
 }
 
 list_f32_node_t*
-_list_append_f32(list_f32_t* self, f32 element) {
+_list_append_f32(list_f32_t* self, f32 element)
+{
 	if (self == NULL) return NULL;
 
 	list_f32_node_t* new_node = (list_f32_node_t*)malloc(sizeof(list_f32_node_t));
@@ -1533,7 +1642,8 @@ _list_append_f32(list_f32_t* self, f32 element) {
 }
 
 list_f64_node_t*
-_list_append_f64(list_f64_t* self, f64 element) {
+_list_append_f64(list_f64_t* self, f64 element)
+{
 	if (self == NULL) return NULL;
 
 	// Allocate memory for a new node
@@ -1817,57 +1927,66 @@ _list_last_f64(list_f64_t* self)
 void*
 _list_node_init(list_type type, void* data)
 {
-	switch (type) {
-	case LIST_I32_T: {
-		list_i32_node_t* node = (list_i32_node_t*)malloc(sizeof(list_i32_node_t));
-		if (!node) return NULL;
-		node->data = *(i32*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	case LIST_I64_T: {
-		list_i64_node_t* node = (list_i64_node_t*)malloc(sizeof(list_i64_node_t));
-		if (!node) return NULL;
-		node->data = *(i64*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	case LIST_U32_T: {
-		list_u32_node_t* node = (list_u32_node_t*)malloc(sizeof(list_u32_node_t));
-		if (!node) return NULL;
-		node->data = *(u32*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	case LIST_U64_T: {
-		list_u64_node_t* node = (list_u64_node_t*)malloc(sizeof(list_u64_node_t));
-		if (!node) return NULL;
-		node->data = *(u64*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	case LIST_F32_T: {
-		list_f32_node_t* node = (list_f32_node_t*)malloc(sizeof(list_f32_node_t));
-		if (!node) return NULL;
-		node->data = *(f32*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	case LIST_F64_T: {
-		list_f64_node_t* node = (list_f64_node_t*)malloc(sizeof(list_f64_node_t));
-		if (!node) return NULL;
-		node->data = *(f64*)data;
-		node->prev = NULL;
-		node->next = NULL;
-		return node;
-	}
-	default:
-		fprintf(stderr, "[*] list_node_init: unsupported vector type\n");
-		return NULL;
+	switch (type)
+	{
+		case LIST_I32_T:
+		{
+			list_i32_node_t* node = (list_i32_node_t*)malloc(sizeof(list_i32_node_t));
+			if (!node) return NULL;
+			node->data = *(i32*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		case LIST_I64_T:
+		{
+			list_i64_node_t* node = (list_i64_node_t*)malloc(sizeof(list_i64_node_t));
+			if (!node) return NULL;
+			node->data = *(i64*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		case LIST_U32_T:
+		{
+			list_u32_node_t* node = (list_u32_node_t*)malloc(sizeof(list_u32_node_t));
+			if (!node) return NULL;
+			node->data = *(u32*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		case LIST_U64_T:
+		{
+			list_u64_node_t* node = (list_u64_node_t*)malloc(sizeof(list_u64_node_t));
+			if (!node) return NULL;
+			node->data = *(u64*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		case LIST_F32_T:
+		{
+			list_f32_node_t* node = (list_f32_node_t*)malloc(sizeof(list_f32_node_t));
+			if (!node) return NULL;
+			node->data = *(f32*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		case LIST_F64_T:
+		{
+			list_f64_node_t* node = (list_f64_node_t*)malloc(sizeof(list_f64_node_t));
+			if (!node) return NULL;
+			node->data = *(f64*)data;
+			node->prev = NULL;
+			node->next = NULL;
+			return node;
+		}
+		default:
+		{
+			fprintf(stderr, "[*] list_node_init: unsupported vector type\n");
+			return NULL;
+		}
 	}
 }
